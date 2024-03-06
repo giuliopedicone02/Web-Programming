@@ -1,7 +1,7 @@
 ![Logo](https://images.squarespace-cdn.com/content/v1/60056c48dfad4a3649200fc0/1613294634908-3HTA3TR74HYYSNEIZSIJ/UniCT-Logo.jpg?format=1000w)
 
 
-# Internet security (A.A. 2023-24 Santoro F. F.)
+# Web Programming Design & Usability (A.A. 2023-24 Santoro F. F.)
 
 Repository creata a scopo didattico per essere utilizzata come backup dei file creati a lezione.
 
