@@ -5,8 +5,8 @@
 
 Repository creata a scopo didattico per essere utilizzata come backup dei file creati a lezione.
 
-* **Cartella Lezioni**: Comprende gli esercizi presenti durante le lezioni tenute dal docente (Le informazioni presenti potrebbero non essere corrette e presentare errori)
-* **Cartella Slides**: Comprende le slides del corso (Attualmente non aggiornate).
+* **Cartella Lezioni**: Comprende gli esercizi effettuati durante le lezioni tenute dal docente (Le informazioni presenti potrebbero non essere corrette e presentare errori)
+* **Cartella Slides**: Comprende le slides del corso 
 
 ## Authors
 
