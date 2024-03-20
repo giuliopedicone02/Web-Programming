@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lezione del 20 marzo 2024</title>
+    <style>
+        .testo_rosso {
+            color: red;
+        }
+
+        .testo_blue {
+            color: blue;
+        }
+
+        .testo_giallo {
+            color: yellow;
+        }
+
+        .testo_grosso {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="https://www.google.com/search" method="get">
+
+        <span>Cerca su Google:</span>
+        <input type="text" name="q">
+
+        <!--
+
+        Radio Button:
+
+        <input type="radio" name="tbm" value="isch">Cerca Immagini
+        <input type="radio" name="tbm" value="vid">Cerca Video
+        
+        CheckBox:
+
+        <input type="checkbox" name="tbm" value="isch">Cerca Immagini
+        <input type="checkbox" name="tbm" value="vid">Cerca Video
+        
+        -->
+
+        <select name="tbm">
+            <option value="">Ricerca Classica</option>
+            <option value="isch">Cerca Immagini</option>
+            <option value="vid">Cerca Video</option>
+        </select>
+
+        <br>
+        <button>Invia i dati</button>
+        <input type="reset">
+    </form>
+
+    <hr>
+
+    <form action="https://jsonplaceholder.typicode.com/posts" method="post">
+
+        <input type="hidden" name="userId" value="1">
+        <input type="text" name="title" placeholder="Titolo">
+        <textarea name="body" placeholder="Descrizione"></textarea>
+
+        <button>Invia i dati</button>
+
+    </form>
+
+    <hr>
+
+    <div class="testo_rosso">Ciao</div>
+    <p class="testo_blue testo_grosso">Mondo</p>
+    <div class="testo_giallo">Banana</div>
+    <div>Banana <span class="testo_giallo">gialla</span></div>
+</body>
+
+</html>
