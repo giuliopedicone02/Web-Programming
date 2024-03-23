@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 71</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form {
+            border: 2px solid black;
+            width: 550px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form">
+        <form action="https://www.google.com/search" method="get">
+            <span>Registrazione Utente</span>
+
+            <table>
+                <tr>
+                    <td>Indirizzo Email</td>
+                    <td>Conferma Indirizzo Email</td>
+                </tr>
+                <tr>
+                    <td><input type="email" name="email" placeholder="Email"></td>
+                    <td><input type="email" name="email" placeholder="Email"></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td>Conferma Password</td>
+                </tr>
+                <tr>
+                    <td><input type="password" name="password" placeholder="Password"></td>
+                    <td><input type="password" name="password" placeholder="Password"></td>
+                </tr>
+            </table>
+
+            <hr style="border: 1px solid red;">
+
+            <table>
+                <tr>
+                    <td>Nome</td>
+                    <td>Secondo Nome</td>
+                    <td>Cognome</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="Nome" placeholder="Nome"></td>
+                    <td><input type="text" name="Secondo Nome" placeholder="Secondo Nome"></td>
+                    <td><input type="text" name="Cognome" placeholder="Cognome"></td>
+                </tr>
+                <tr>
+                    <td>Sesso</td>
+                    <td colspan="2">Città ed indirizzo</td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="sesso">
+                            <option value="Uomo">Uomo</option>
+                            <option value="Donna">Donna</option>
+                            <option value="Altro">Altro</option>
+                        </select>
+                    </td>
+                    <td colspan="2"><input type="text" name="Citta" placeholder="Citta ed indirizzo"></td>
+                </tr>
+            </table>
+
+            <hr style="border: 1px solid red;">
+
+            <table>
+                <tr>
+                    <td>Interessi</td>
+                    <td>Sistema Utilizzato</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="border: 1px solid black;">
+                            <input type="checkbox" name="interesse" value="Videogame">Videogame<br>
+                            <input type="checkbox" name="interesse" value="Arte">Arte<br>
+                            <input type="checkbox" name="interesse" value="Fotografia">Fotografia<br>
+                            <input type="checkbox" name="interesse" id="Alcool">Alcool
+                        </div>
+                    </td>
+                    <td>
+                        <div style="border: 1px solid black;">
+                            <input type="radio" name="sistema" value="Windows">Microsoft Windows<br>
+                            <input type="radio" name="sistema" value="Linux">Linux<br>
+                            <input type="radio" name="sistema" value="MacOS">Mac OS<br>
+                            <input type="radio" name="sistema" id="DOS">Microsoft DOS
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <hr style="border: 1px solid red;">
+
+            <center>
+                <p>Accetti le condizioni</p>
+                <input type="checkbox" name="condizoni" value="yes">Accetto<br>
+            </center>
+
+            <div style="text-align: right;">
+                <button>Registrati</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
