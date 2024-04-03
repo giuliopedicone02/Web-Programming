@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lezione del 03/04/2024</title>
+    <style>
+        li {
+            color: red;
+        }
+
+        ul li,
+        div.testi>p {
+            color: blue;
+        }
+
+        /*Tutti gli li che sono figli diretti degli ul che sono figli diretti degli li...*/
+        ol>li>ul>li {
+            color: gold;
+        }
+
+        /*Solo il primo elemento di lista sia viola*/
+
+        ol>li>ul>li>span+ul>li {
+            color: plum;
+        }
+
+        ol>li>ul>li>span~ul>li {
+            color: greenyellow
+        }
+
+        *~ul>li {
+            color: aqua
+        }
+
+        form input[placeholder] {
+            color: red;
+        }
+
+        form input[type=password] {
+            border: 2px solid orange
+        }
+
+        form input[type=checkbox][checked] {
+            color: green;
+            background: red;
+        }
+
+        /*form .red con la ~ deve contenere almeno questo valore con ^ significa che l'attributo deve iniziare con quel valore*/
+        form [class~=red] {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="contenuto_principale">
+        <ol>
+            <li>Elemento 1</li>
+            <li>
+                Elemento 2
+                <ul>
+                    <li>Sub elem 1</li>
+                    <li>Sub elem 2</li>
+                    <li>
+                        <span>Sub elem 3</span>
+                        <ul>
+                            <li>Ciao</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span>Sub elem 4</span>
+                        <ul>
+                            <li>Mondo</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Sub elem 5
+                        <ul>
+                            <li>Mondo</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>Elemento 3</li>
+        </ol>
+
+        <ul>
+            <li>Elemento 1</li>
+            <li>Elemento 2</li>
+        </ul>
+    </div>
+
+    <div class="testi">
+        <p>Paragrafo</p>
+    </div>
+
+    <form>
+        <input type="text" name="nickname" placeholder="Inserisci qui il nick">
+        <input type="email" name="email" placeholder="email@domain.com">
+        <input type="password" name="boh">
+        <hr>
+        <input type="checkbox" name="check" value="1">
+        <input type="checkbox" name="check" value="2">
+        <hr>
+        <input type="radio" name="check" value="1">
+        <input type="radio" name="check" value="2">
+    </form>
+</body>
+
+</html>
