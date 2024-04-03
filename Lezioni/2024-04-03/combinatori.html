@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        li {
+            color: red;
+        }
+
+        ul li {
+            color: blue;
+        }
+
+        ol>li>ul>li{
+            color: gold;
+        }
+
+        ol>li>ul>li>span~ul>li{
+            color: greenyellow;
+        }
+
+        ol>li>ul>li>span+ul>li{
+            color: plum;
+        }
+
+        ol>li>ul>li>*~ul>li{
+            color: aqua;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="contenuto_principale">
+        <ol>
+            <li>Elemento 1</li>
+            <li>
+                Elemento 2
+                <ul>
+                    <li>Sub elem 1</li>
+                    <li>Sub elem 2</li>
+                    <li>
+                        <span>Sub elem 3</span>
+                        <b>Sub elem 3</b>
+                        <ul>
+                            <li>CIAO</li>
+                        </ul>
+                        <ul>
+                            <li>CIAO</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span>Sub elem 4</span>
+                        <ul>
+                            <li>Mondo</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Sub elem 5
+                        <ul>
+                            <li>Mondo</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>Elemento 3</li>
+        </ol>
+
+        <ul>
+            <li>Elemento 1</li>
+            <li>Elemento 2</li>
+        </ul>
+    </div>
+
+</body>
+</html>

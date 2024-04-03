@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        form input[placeholder]{
+            color: red;
+        }
+        form input[type=password]{
+            border: 2px solid orange;
+        }
+        form input[checked]{
+            color: greenyellow;
+            background: red;
+        }
+
+        form [class^=red]{ /* form .red*/
+            color: red;
+        }
+
+        form input[type=radio]{
+            color: red;
+            background-color: yellow;
+        }
+
+        .bottone{
+            background: purple;
+            color: gold;
+        }
+
+        .bottone:hover{
+            background: aqua;
+            color: blue;
+        }
+
+        .bottone:active{
+            background: black;
+            color: orange;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="contenuto_principale">
+
+        <form>
+            <input class="red yellow " type="text" name="nickanme" placeholder="Inserisci qui il nick">
+            <input type="email" name="email" placeholder="asdasd@asdads.it">
+            <input type="password" name="boh" >
+            <hr>
+            <input type="checkbox" name="check" value="1">
+            <input type="checkbox" name="check" value="2">
+            <hr>
+            <input type="radio" name="rad" value="1">
+            <input type="radio" name="rad" value="2">
+        </form>
+
+        <button class="bottone">Ciao </button>
+
+        <span class="bottone">Bottone bello due</span>
+    </div>
+
+</body>
+</html>
