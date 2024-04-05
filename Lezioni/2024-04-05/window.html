@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finestra</title>
+    <style>
+        html,
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .window {
+            background-color: lightgrey;
+            margin: 10px;
+            border: 2px solid black;
+        }
+
+        .window>.title {
+            background-color: rgb(50, 50, 50);
+            color: white;
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+            padding: 10px;
+            border-bottom: 2px dashed white;
+            text-transform: uppercase;
+        }
+
+        .window>.content {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="window">
+        <div class="title">Titolo della finestra</div>
+        <div class="content">Contenuto della finestra</div>
+    </div>
+</body>
+
+</html>
