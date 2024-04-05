@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lezione 05 aprile 2024</title>
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .window {
+            background-color: #e0e0e0;
+            border: 2px solid #3d3d3d;
+            margin: 10px;
+            border-left: 2px solid red;
+            margin-left: 5px;
+            margin-right: 5px;
+            display: inline-block;
+        }
+
+        .window>.title_bar {
+            background-color: #3d3d3d;
+            height: 30px;
+            /*Serve a centrare orizzontalmente il testo*/
+            text-align: center;
+            /*Serve a centrare verticalmente il testo, bisogna impostare necessariamente height*/
+            line-height: 30px;
+        }
+
+        .window>.title_bar>.title {
+            color: #fff;
+        }
+
+        .window>.content {
+            margin: 5px;
+        }
+
+        .window>.content button {
+            background: #fff;
+            color: black;
+            padding: 10px;
+            border: 2px dotted gray;
+            display: none;
+        }
+
+        .window:hover>.content button {
+            display: block;
+        }
+
+        a,
+        a:visited {
+            /* Rimuove la sottolineatura dai link*/
+            text-decoration: none;
+            color: orange;
+            text-transform: none;
+        }
+
+        /* Modifica il colore al passaggio del mouse*/
+        a:hover {
+            color: fuchsia;
+            text-transform: uppercase;
+        }
+
+        /* Modifca il colore alla pressione del mouse*/
+        a:active {
+            text-transform: none;
+            color: chartreuse;
+            font-size: smaller;
+        }
+
+        /* Modifca il colore se il link è già stato aperto*/
+        a:visited {
+            text-decoration: none;
+            color: orange
+        }
+
+        a:active::after {
+            content: " Sei sicuro?"
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="contenuto_principale">
+        <div class="window">
+            <div class="title_bar">
+                <span class="title">Titolo</span>
+            </div>
+            <div class="content">
+                <p>Sono il contento della finestra</p>
+                <!--Creazione di uno stile per i link-->
+                <a href="https://wwww.google.com/">Vai su Google</a>
+            </div>
+        </div>
+
+        <div class="window">
+            <div class="title_bar">
+                <span class="title">Titolo</span>
+            </div>
+            <div class="content">
+                <button>Premi Qui</button>
+            </div>
+        </div>
+
+        <div class="window">
+            <div class="title_bar">
+                <span class="title">Titolo</span>
+            </div>
+            <div class="content">
+                <div class="window">
+                    <div class="title_bar">
+                        <span class="title">Titolo</span>
+                    </div>
+                    <div class="content">
+                        <p>Sono il contento della finestra</p>
+                        <!--Creazione di uno stile per i link-->
+                        <a href="https://wwww.google.com/">Vai su Google</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
