@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 128</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .box {
+            top: 50px;
+            left: 100px;
+            position: absolute;
+            border: 1px solid black;
+            display: inline-block;
+        }
+
+        .angle.absolute {
+            position: absolute;
+        }
+
+        .angle.top {
+            top: -10px;
+            border-top: 2px solid red;
+        }
+
+        .angle.bottom {
+            bottom: -10px;
+            border-bottom: 2px solid red;
+        }
+
+        .angle.left {
+            left: -10px;
+            border-left: 2px solid red;
+        }
+
+        .angle.right {
+            right: -10px;
+            border-right: 2px solid red;
+        }
+
+        .angle {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="angle absolute top left"></div>
+        <div class="angle absolute top right"></div>
+        <textarea cols="30" rows="10"></textarea>
+        <div class="angle absolute bottom left"></div>
+        <div class="angle absolute bottom right"></div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+# Web Programming - Mercoledì 10 aprile 2024
+
+## Differenza tra margin e padding
+
+Padding: Spaziatura tra parente e contenuti
+Margin: Spaziatura tra elementi
+
+## Display
+
+Permette di far variare il comportamento di un elemento, e permette di scegliere se renderizzare un elemento o meno
+
+## Opacity
+
+Setta l'opacità di un elemento ovvero un livello di trasparenza che va da 0 ad 1, un elemento di opacità 0 esiste ancora ma verrà renderizzato
+
+## Visibility
+
+Permette a differenza di opacity che gli elementi non saranno più applicabili ad elementi invisibili o nascosti, si sconsiglia di utilizzare direttamente ma viene utilizzata per altro
+
+## Box Sizing
+
+Si veda slide 119:
+- content-box: width ed height saranno relativi al content, il box in se sarà più grande delle impostazioni settate
+- border-box: width ed height saranno relativi al box completo, il content avrà dimensioni ridotte in base ai dati relativi a border e padding settati
+
+## Position
+
+Ogni elemento è naturalmente posizionato in funzione dell'html dove questo elemento viene definito.
+- Posizionamento relativo: Posizione relativa al suo posizionamento originale nel flusso, gli altri elementi della pagina influenzano la sua posizione.
+- Posizionamento assoluto: L'elemento viene rimosso dal flusso del documento e non influenzerà il layout degli altri elementi
+- Posizionamento fixed: Posiziona l'elemento rispetto alla finestra del browser e rimane fisso nella sua posizione
+- Posizionamento sticky: Si comporterà come relative fino ad un certo punto e fixed da un determinato scrolling della pagina in poi
+
+## Unità di misura
+
+- Unità Assolute
+    - px: pixels
+    - cm: centimetri
+    - pt: punti
+- Unità relative
+    - em: relativo alla dimensione del font del genitore
+    - rem: relativo alla dimensione del font dell'elemento radice
+    - vh: 1% dell'altezza della viewport (schermata del browser)
+    - vw: 1% della larghezza della viewport
+- Percentuale: Relativa al genitore
