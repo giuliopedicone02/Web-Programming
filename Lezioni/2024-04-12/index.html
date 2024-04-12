@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lezione del 12 aprile 2024</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        #contenitore-film {
+            position: relative;
+        }
+
+        #contenitore-film>.movie-card {
+            position: relative;
+            display: inline-block;
+            border: 2px solid black;
+            margin: 10px;
+            width: 350px;
+            height: 500px;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 32px;
+        }
+
+        #contenitore-film>.movie-card>.info {
+            position: absolute;
+            background-color: #000;
+            color: #fff;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            font-family: sans-serif;
+            display: none;
+        }
+
+        #contenitore-film>.movie-card:hover>.info {
+            display: block;
+        }
+
+        #contenitore-film>.movie-card>.info>h3 {
+            margin: 10px 0px;
+        }
+
+        #contenitore-film>.movie-card>.info>h5 {
+            margin: 0;
+        }
+
+        #contenitore-film>.movie-card>.poster {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="contenitore-film">
+        <div class="movie-card">
+            <div class="poster" style="background: url(assets/img/locandina2.jpg) center;
+            background-size: cover;"></div>
+            <div class="info">
+                <h3>John Wick 3</h3>
+                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam facere adipisci earum animi
+                    assumenda recusandae officia consectetur enim vel ut eum officiis, totam nobis id repellendus
+                    exercitationem saepe eius vitae.</h5>
+            </div>
+        </div>
+
+        <div class="movie-card">
+            <div class="poster" style="background: url(assets/img/locandina.jpg) center;
+            background-size: cover;"></div>
+            <div class="info">
+                <h3>Tre uomini ed una gamba</h3>
+                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi repellendus veritatis ipsa possimus
+                    voluptatum, officia, dicta obcaecati est ducimus blanditiis dolor iusto consequatur voluptates,
+                    voluptatem ut at laborum quod similique.</h5>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
