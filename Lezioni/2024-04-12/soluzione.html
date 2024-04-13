@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            cursor: url("assets/imgs/cursor.png") 25 25, auto;
+        }
+
+        .card-user {
+            width: 400px;
+            position: relative;
+            display: inline-block;
+            background: rgb(86, 23, 188);
+            color: white;
+            overflow: hidden;
+            border-radius: 24px;
+            padding: 30px;
+            font-family: sans-serif;
+            margin: 50px;
+        }
+
+        .card-user>.header>.photo {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-position: center;
+            background: #f00;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+
+        .card-user>.header>.info {
+            display: inline-block;
+            position: relative;
+            margin-left: 20px;
+            top: -20px;
+        }
+
+        .card-user>.header>.info>h2 {
+            margin: 0;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .card-user>.header>.info>h5 {
+            margin: 0;
+            font-size: 18px;
+            color: #eeeeee;
+        }
+
+        .card-user>.header>.cross {
+            color: #eaeaea;
+            font-weight: bolder;
+            font-size: 28px;
+            position: absolute;
+            right: 24px;
+            top: 16px;
+        }
+
+        .card-user>.post {
+            margin: 10px 0;
+            font-size: 24px;
+            margin-bottom: 50px;
+        }
+
+        .card-user>.footer {
+            background: #eaeaea;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 10px;
+            height: 50px;
+        }
+
+        .card-user>.footer>input {
+            background: #f00;
+            font-size: 24px;
+            border: none;
+            background: none;
+            width: 80%;
+        }
+
+        .card-user>.footer>button {
+            background: #f00;
+            color: purple;
+            font-size: 24px;
+            border: none;
+            background: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card-user">
+        <div class="header">
+            <div class="cross">X</div>
+            <div class="photo"
+                style="background: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/73954a58-9322-4026-9b7c-19f07ffdd5d2/detd3r6-2c80498f-0831-4e15-b843-b310fe99d953.jpg/v1/fill/w_488,h_488,q_75,strp/new_profile_picture_with_mario_by_tlhandgffanatic64203_detd3r6-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NDg4IiwicGF0aCI6IlwvZlwvNzM5NTRhNTgtOTMyMi00MDI2LTliN2MtMTlmMDdmZmRkNWQyXC9kZXRkM3I2LTJjODA0OThmLTA4MzEtNGUxNS1iODQzLWIzMTBmZTk5ZDk1My5qcGciLCJ3aWR0aCI6Ijw9NDg4In1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.vhAl8F4yF-ABvzWmUl2NUhOESCp10MZzWSayExt7gg4') center; background-size: cover;">
+            </div>
+            <div class="info">
+                <h2>Mario Mario</h2>
+                <h5>Idraulico</h5>
+            </div>
+        </div>
+        <div class="post">
+            messaggio del post
+        </div>
+        <div class="footer">
+            <input type="text" placeholder="scrivi qua"> <button>Send</button>
+        </div>
+    </div>
+</body>
+
+</html>
