@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.icon:hover {
+    opacity: 0.4;
+    transition: ease-in;
+}
+
+.terminale {
+    position: absolute;
+    top: 70px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: black;
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+.terminale>.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background-color: darkgray;
+    padding: 10px;
+}
+
+.terminale>.header>a>.icon {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+.terminale>.header>.titolo {
+    position: relative;
+    top: -15px;
+    left: 25%;
+    line-height: 50px;
+    text-align: center;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.terminale>.content {
+    padding: 20px;
+    color: white;
+    outline: none;
+}
+
+.terminale>.content>.inputtext {
+    padding: 10px;
+}
+
+.terminale>.content .inputtext::before {
+    content: "user@my-computer:/home/usr/$> ";
+    color: yellow;
+}
