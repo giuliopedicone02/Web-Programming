@@ -1,0 +1,21 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+.grid {
+    display: grid;
+    background-color: aqua;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas:
+        "header header header header header"
+        "menu . content content content"
+        "footer footer footer footer footer";
+}
+
+.grid .elem {
+    padding: 10px;
+    background-color: #f00;
+    color: white;
+}
