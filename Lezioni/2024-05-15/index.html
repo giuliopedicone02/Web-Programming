@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lezione del 15 maggio 2024</title>
+</head>
+
+<body>
+    <script>
+        // alert("Hello World!");
+        let a = 2;
+        let b = "2";
+        console.log(a === b);
+
+        let arr = ["ciao"];
+        arr[1] = "mondo";
+        arr[2] = 999999;
+        arr[3] = true;
+        arr[4] = undefined;
+        arr[5] = null;
+
+        arr.push("Elemento");
+        arr.push("Secondo elemento");
+        arr.pop(); //Elimina l'ultimo elemento inserito
+        arr.shift(); //Elimina il primo elemento inserito
+        arr.unshift("Primo elemento"); //Aggiugne un elemento in testa
+
+        console.log("Risultato: " + arr.indexOf("mondo"));
+
+        arr.splice(arr.indexOf(999999), 1);
+
+        for (elem of arr) {
+            console.log(elem);
+        }
+
+        let vecchioLog = console.log();
+
+        let mioLog = function (something) {
+            vecchioLog(something);
+        }
+
+        console.log = mioLog;
+
+        mioLog(4);
+
+        console.log(miaFunzione);
+        console.log(miaFunzione());
+
+    </script>
+</body>
+
+</html>
