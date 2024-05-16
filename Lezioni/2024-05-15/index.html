@@ -25,7 +25,7 @@
         arr.push("Secondo elemento");
         arr.pop(); //Elimina l'ultimo elemento inserito
         arr.shift(); //Elimina il primo elemento inserito
-        arr.unshift("Primo elemento"); //Aggiugne un elemento in testa
+        arr.unshift("Primo elemento"); //Aggiunge un elemento in testa
 
         console.log("Risultato: " + arr.indexOf("mondo"));
 
@@ -35,19 +35,13 @@
             console.log(elem);
         }
 
-        let vecchioLog = console.log();
+        let vecchioLog = console.log;
 
         let mioLog = function (something) {
             vecchioLog(something);
         }
 
         console.log = mioLog;
-
-        mioLog(4);
-
-        console.log(miaFunzione);
-        console.log(miaFunzione());
-
     </script>
 </body>
 
