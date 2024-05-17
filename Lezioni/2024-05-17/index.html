@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lezione del 17 maggio 2024</title>
+</head>
+
+<body>
+    <script>
+        const printStringa = (messaggio, funzione) => {
+            let newMessage = messaggio;
+
+            if (funzione && typeof (funzione) == "function") {
+                newMessage = funzione(messaggio);
+            }
+
+            console.log(newMessage);
+        }
+
+
+        printStringa("messaggio da stampare", (oldMessage) => {
+            return oldMessage.substring(5, oldMessage.length);
+        }); //Definizione inline di una funzione anonima che toglie i primi 5 caratteri di una stringa
+
+        printStringa("messaggio di prova 2", function (oldMessage) {
+            return oldMessage.substring(0, 5);
+        });
+
+        /* Esempio di var con scope
+
+        function somma(num1, num2) {
+            var result = num1 + num2;
+            console.log(result);
+        }
+
+        somma(2, 2);
+        console.log(result);
+        */
+
+
+        (() => {
+            let username = "fedy";
+
+            let login = (user) => {
+                if (user == "fedy") {
+                    console.log("loggato");
+                }
+                else {
+                    console.log("Errore di autenticazione");
+                }
+            }
+
+            login(username);
+        })();
+
+
+    </script>
+</body>
+
+</html>
