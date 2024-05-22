@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lezione del 22 maggio 2024</title>
+
+    <style>
+        #console {
+            position: absolute;
+            top: 100px;
+            bottom: 100px;
+            left: 100px;
+            right: 100px;
+            background-color: black;
+        }
+
+        #console>.row {
+            color: greenyellow;
+            padding: 10px;
+            overflow: hidden;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="console">
+        <div class="row">Voce Console</div>
+    </div>
+
+    <script>
+        /*
+        let player = {
+            username: "Fedy Fausto",
+            level: 17,
+            points: 45,
+            power: 20,
+            defense: 10,
+            printInfo: function () { console.log(this.username, " level ", this.level); },
+            attack: function (target) { },
+            pickUpWeapon: function (weapon) { this["attack"] = weapon.action; }
+        }
+
+        
+                let dict = {};
+                dict["indicemio"]; //Equivale a dict.indicemio
+        
+                //La notazione con le parentesi quadre permette di costruire strutture dinamiche
+                for (let i = 0; i < 10; i++) {
+                    player2["attributoNumber" + i] = i;
+                }
+        
+                console.log(player2["attributoNumber2"]);
+        
+                let arma = { action: function (target) { console.log("Attacco il target;"); } }
+        
+                player.pickUpWeapon(arma);
+                player.attack(player2);
+        
+
+        class Player {
+            name;
+            power;
+
+            constructor(name, power) {
+                this.name = name;
+                this.power = power;
+            }
+        }
+
+        let player3 = new Player("Mario", 10);
+        console.log(player3);
+
+        let obj2 = {
+            name: "Bobo",
+            print: function () { console.log(this.name); },
+            print2: () => { console.log(name); }
+        }
+
+        obj2.print();
+        obj2.print2();
+
+         Quando una funzione viene definita tramite function 
+         il this può assumere diversi valori o potrebbe essere nullo o non definiti e
+         potrebbe dipendere dall'evento che stiamo cercando di gestire.
+         Le arrow function non hanno un this, il this di un arrow function guarda lo scope 
+         dove essa è stata definita
+        */
+
+
+        window.onload = () => {
+            const consoleContainer = document.querySelector("#console"); // Equivalente a document.getElementById("console")
+            consoleContainer.innerHTML = "";
+
+            const printScreen = (messaggio) => {
+                const elemento = document.createElement("div");
+                elemento.innerHTML = messaggio;
+                elemento.setAttribute("class", "row"); //Equivalente a elemento.classList = ["row"]; 
+                consoleContainer.appendChild(elemento);
+            }
+
+            const printError = (messaggio) => {
+                const elemento = document.createElement("div");
+                elemento.innerHTML = messaggio;
+                elemento.setAttribute("class", "row"); //Equivalente a elemento.classList = ["row"]; 
+                elemento.style.color = "red";
+                consoleContainer.appendChild(elemento);
+            }
+
+            for (let i = 0; i < 10; i++) {
+                if (i % 2 == 0) {
+                    printScreen("Messaggio #" + i);
+                }
+                else {
+                    printError("Messaggio #" + i);
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
