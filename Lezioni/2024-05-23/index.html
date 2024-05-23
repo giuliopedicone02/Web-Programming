@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lezione del 23 maggio 2024</title>
+
+    <style>
+        .app-container {
+            position: absolute;
+            top: 100px;
+            bottom: 100px;
+            left: 100px;
+            right: 100px;
+
+        }
+
+        .app-container>.console {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 50px;
+            background-color: black;
+            overflow: hidden;
+            overflow-y: auto;
+        }
+
+        .app-container>.console>.row {
+            color: greenyellow;
+            padding: 10px;
+        }
+
+        .app-container>.console>.row>.delete {
+            color: red;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .app-container>.input-container {
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background-color: white;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .app-container>.input-container input[type="text"] {
+            flex: 2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-container">
+        <div class="console">
+            <div class="row"></div>
+        </div>
+        <div class="input-container">
+            <input type="text">
+            <button class="send-btn">Invia</button>
+        </div>
+    </div>
+
+    <script>
+
+        window.onload = () => {
+
+            const miaConsole = {
+                consoleElement: document.querySelector(".app-container>.console"),
+                inputElement: document.querySelector(".app-container>.input-container>input"),
+                buttonElement: document.querySelector(".app-container>.input-container>button"),
+
+                init: function () {
+                    this.buttonElement.addEventListener("click", (event) => {
+                        console.log(event);
+                        this.log(this.inputElement.value);
+                        this.inputElement.value = "";
+                    })
+
+                    /* Paragonabile a:
+
+                    this.buttonElement.onclick = (event) => {
+                        console.log(event);
+                        this.log(this.inputElement.value);
+                        this.inputElement.value = "";
+                    } 
+
+                    */
+
+                    const test = (event) => {
+                        console.log("Ho stampato qualcosa");
+                    };
+
+                    this.buttonElement.addEventListener("click", test);
+
+                    this.buttonElement.removeEventListener("click", test);
+                },
+
+                log: function (messaggio) {
+                    const elemento = document.createElement("div");
+                    elemento.classList = ["row"];
+
+                    const deleteButton = document.createElement("span");
+                    const messaggioElement = document.createElement("span");
+                    deleteButton.innerHTML = "[ELIMINA]";
+                    deleteButton.classList = ["delete"];
+                    messaggioElement.innerHTML = messaggio;
+
+                    /* Paragonabile a: 
+
+                        const HTMLBOH = '<span class="delete">[ELIMINA]</span>\
+                        <span>' + message + '</span>';
+                        elemento.innerHTML = HTMLBOH;
+                    */
+
+                    deleteButton.addEventListener("click", () => {
+                        elemento.remove();
+                    })
+
+
+                    elemento.appendChild(deleteButton);
+                    elemento.appendChild(messaggioElement);
+                    this.consoleElement.appendChild(elemento);
+                }
+            };
+
+            // tempo ------------------------->
+
+            effettuaLogin(
+                nascondiLogin(
+                    RichiediDatiUtente(
+                        RiempiDatiUtente(
+                            MostraDatiUtente()
+                        )
+                    )
+                )
+            )
+            miaConsole.init();
+            miaConsole.log("Ecco un messaggio");
+        }
+    </script>
+</body>
+
+</html>
