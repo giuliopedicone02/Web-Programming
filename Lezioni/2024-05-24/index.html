@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lezione del 24 maggio 2024</title>
+
+    <style>
+        .app-container {
+            position: absolute;
+            top: 100px;
+            bottom: 100px;
+            left: 100px;
+            right: 100px;
+
+        }
+
+        .app-container>.console {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 50px;
+            background-color: black;
+            overflow: hidden;
+            overflow-y: auto;
+        }
+
+        .app-container>.console>.row {
+            color: greenyellow;
+            padding: 10px;
+        }
+
+        .app-container>.console>.row>.delete {
+            color: red;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .app-container>.input-container {
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background-color: white;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .app-container>.input-container input[type="text"] {
+            flex: 2;
+        }
+
+        .app-container>.cronometro {
+            position: absolute;
+            background-color: #e0e0e0;
+            width: 200px;
+            height: 300px;
+            right: 100px;
+            top: 100px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+            align-content: space-around;
+        }
+
+        .app-container>.cronometro>.count-container,
+        .app-container>.cronometro>.button-container {
+            display: flex;
+            justify-content: center;
+            font-size: 34px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-container">
+        <div class="console">
+            <div class="row"></div>
+        </div>
+        <div class="input-container">
+            <input type="text">
+            <button class="send-btn">Invia</button>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <div class="cronometro">
+            <div class="count-container">
+                <span class="hours">00</span>:<span class="minutes">00</span>:<span class="seconds">00</span>
+            </div>
+            <div class="button-container">
+                <button class="start-btn">Start Timer</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        window.onload = () => {
+
+            const cronometro = {
+                mainContainer: document.querySelector(".app-container>.cronometro"),
+                hoursElement: null,
+                minutesElement: null,
+                secondsElement: null,
+                buttonStart: null,
+
+                hours: 0,
+                minutes: 0,
+                seconds: 0,
+                intervalVar: null,
+                started: false,
+
+                init: function () {
+
+                    this.hoursElement = this.mainContainer.querySelector(".hours");
+                    this.minutesElement = this.mainContainer.querySelector(".minutes");
+                    this.secondsElement = this.mainContainer.querySelector(".seconds");
+                    this.buttonStart = this.mainContainer.querySelector(".start-btn");
+
+                    this.hoursElement.innerHTML = "00";
+                    this.minutesElement.innerHTML = "00";
+                    this.secondsElement.innerHTML = "00";
+
+                    this.buttonStart.addEventListener("click", () => { this.toggle(); });
+                },
+
+                toggle: function () {
+                    if (this.started) {
+                        this.started = false;
+                        this.stop();
+                    }
+                    else {
+                        this.started = true;
+                        this.start();
+                    }
+                },
+
+                start: function () {
+                    this.buttonStart.innerHTML = "Stop Timer";
+
+                    // Permette di non richiamare nuovamente la stessa funzione velocizzando il timer
+                    if (this.intervalVar) {
+                        clearInterval(this.intervalVar);
+                    }
+
+                    this.intervalVar = setInterval(() => { this.callBackSecond(); }, 1000);
+                },
+
+                stop: function () {
+                    this.buttonStart.innerHTML = "Start Timer";
+                    if (this.intervalVar) {
+                        clearInterval(this.intervalVar);
+                    }
+                },
+
+                callBackSecond: function () {
+                    this.seconds++;
+
+                    if (this.seconds > 59) {
+                        this.seconds = 0;
+                        this.minutes++;
+                    }
+
+                    if (this.minutes > 59) {
+                        this.minutes = 0;
+                        this.hours++;
+                    }
+
+                    // Questi 3 if servono a mantenere sempre 2 cifre invece che una sola
+
+                    this.secondsElement.innerHTML = this.seconds > 9 ? this.seconds : "0" + this.seconds;
+                    this.minutesElement.innerHTML = this.minutes > 9 ? this.minutes : "0" + this.minutes;
+                    this.hoursElement.innerHTML = this.hours > 9 ? this.hours : "0" + this.hours;
+                }
+            }
+
+            const miaConsole = {
+                consoleElement: document.querySelector(".app-container>.console"),
+                inputElement: document.querySelector(".app-container>.input-container>input"),
+                buttonElement: document.querySelector(".app-container>.input-container>button"),
+
+                init: function () {
+                    this.buttonElement.addEventListener("click", (event) => {
+                        console.log(event);
+                        this.log(this.inputElement.value);
+                        this.inputElement.value = "";
+                    })
+
+                    const test = (event) => {
+                        console.log("Ho stampato qualcosa");
+                    };
+
+                    this.buttonElement.addEventListener("click", test);
+
+                    this.buttonElement.removeEventListener("click", test);
+                },
+
+                log: function (messaggio) {
+                    const elemento = document.createElement("div");
+                    elemento.classList = ["row"];
+
+                    const deleteButton = document.createElement("span");
+                    const messaggioElement = document.createElement("span");
+                    deleteButton.innerHTML = "[ELIMINA]";
+                    deleteButton.classList = ["delete"];
+                    messaggioElement.innerHTML = messaggio;
+
+                    deleteButton.addEventListener("click", () => {
+                        elemento.remove();
+                    })
+
+
+                    elemento.appendChild(deleteButton);
+                    elemento.appendChild(messaggioElement);
+                    this.consoleElement.appendChild(elemento);
+                }
+            };
+
+            miaConsole.init();
+            miaConsole.log("Ecco un messaggio");
+
+            cronometro.init();
+
+            console.log("Faccio una richiesta al server... ");
+
+            const miaPromessa = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const rispostaServer = { dati: [1, 2, 3, 4, 5, true] }
+                    resolve(rispostaServer);
+                }, 2000);
+
+                // setTimeout(() => {
+                //     reject("Errore fatto a posta!");
+                // }, 1000);
+            });
+
+            // miaPromessa.then((rispostaServer) => { console.log("Il server mi ha risposto con: ", rispostaServer); })
+            // miaPromessa.catch((err) => { console.error("Errore", err); })
+
+            console.log("Aspetto la risposta... ");
+
+            const richiestaServer = async () => {
+                const risposta = await miaPromessa;
+                console.log(risposta);
+                return risposta;
+            };
+
+            (async () => {
+                await richiestaServer();
+                console.log("Stampo subito");
+            })();
+
+            /* RICHIESTA AJAX */
+
+            // const http = new XMLHttpRequest();
+            // const url = 'https://jsonplaceholder.typicode.com/todos/';
+            // http.open("GET", url);
+            // 
+            // http.onreadystatechange = function (e) {
+            //     if (this.readyState == 4 && this.status == 200) {
+            //         console.log(http.responseText)
+            //     }
+            // }
+            // 
+            // http.send();
+
+            /* RICHIESTA FETCH */
+
+            const promessaRichiesta = fetch('https://jsonplaceholder.typicode.com/todos/');
+            promessaRichiesta.then((risposta) => risposta.json()).then((jsonData) => { console.log(jsonData); })
+
+            const richiestaGet = async (url_var) => {
+                const promiseResponse = await fetch(url_var);
+                const rispostaJson = await promiseResponse.json();
+                return rispostaJson;
+            }
+
+            (async () => {
+                const risposta = await richiestaGet('https://jsonplaceholder.typicode.com/todos/');
+                console.log(risposta);
+            })
+        }
+    </script>
+</body>
+
+</html>
