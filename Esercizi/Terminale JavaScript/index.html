@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terminale</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+
+        body {
+            background-image: url("assets/img/background.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .desktop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .terminale {
+            position: relative;
+            display: inline-block;
+            margin-left: 10%;
+            margin-top: 5%;
+            width: 700px;
+            height: 300px;
+            background-color: black;
+            resize: both;
+            min-width: 700px;
+            min-height: 300px;
+            overflow: auto;
+            scrollbar-width: none;
+        }
+
+        .terminale.fullscreen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            resize: none;
+            z-index: 1;
+        }
+
+        .icon:hover {
+            opacity: 0.4;
+            transition: ease-in;
+        }
+
+        .terminale>.header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background-color: darkgray;
+            padding: 10px;
+            z-index: 1;
+        }
+
+        .terminale>.header>.icon {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border-radius: 100%;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .terminale>.header>.chiusura {
+            background: url(assets/img/close.png) center;
+            background-size: cover;
+        }
+
+        .terminale>.header>.riduci {
+            background: url(assets/img/minimise.png) center;
+            background-size: cover;
+        }
+
+        .terminale>.header>.espandi {
+            background: url(assets/img/maximize.png) center;
+            background-size: cover;
+        }
+
+        .terminale>.header>.titolo {
+            position: relative;
+            top: -15px;
+            left: 25%;
+            line-height: 50px;
+            text-align: center;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .terminale>.row {
+            position: relative;
+            padding-top: 30px;
+            padding-left: 20px;
+            color: white;
+        }
+
+        .terminale>.row>.before {
+            color: yellow;
+        }
+
+        .terminale>.row>.input {
+            outline: none;
+        }
+
+        .desktop>.footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.4);
+            color: white;
+            text-align: center;
+        }
+
+        .desktop>.footer>.icon {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="desktop">
+        <div class="terminale">
+            <div class="header">
+                <div class="icon chiusura"></div>
+                <div class="icon riduci"></div>
+                <div class="icon espandi"></div>
+                <div class="titolo">user@terminale</div>
+            </div>
+
+            <div class="row">
+                <span class="before">user@my-computer:/home/usr/$></span>
+                <span class="input" contenteditable="true" autofocus></span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="icon terminal" style="background: url(assets/img/terminal.png) center; background-size: cover">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            class Terminale {
+                constructor() {
+                    this.init();
+                }
+
+                init = () => {
+                    this.mainContainer = document.querySelector(".desktop");
+                    this.mainTerminale = this.mainContainer.querySelector(".terminale");
+                    this.pulsanteChiusura = this.mainTerminale.querySelector(".header>.chiusura");
+                    this.pulsanteRiduci = this.mainTerminale.querySelector(".header>.riduci");
+                    this.pulsanteEspandi = this.mainTerminale.querySelector(".header>.espandi");
+                    this.inputContent = this.mainTerminale.querySelector(".row>.input");
+                    this.pulsanteApertura = this.mainContainer.querySelector(".footer>.terminal");
+                    this.riduci = false;
+                    this.chiusura = false;
+                    this.fullscreen = false;
+
+                    this.pulsanteApertura.addEventListener("click", this.creaTerminale);
+                    this.pulsanteChiusura.addEventListener("click", this.distruggiTerminale);
+                    this.pulsanteRiduci.addEventListener("click", this.riduciTerminale);
+                    this.pulsanteEspandi.addEventListener("click", this.espandiTerminale);
+
+                    this.inputContent.addEventListener("keypress", (event) => {
+                        if (event.key === "Enter") {
+                            this.creaNuovaRiga();
+                            this.mostraInput(this.inputContent.textContent);
+                        }
+                    });
+
+                };
+
+
+                creaTerminale = () => {
+                    if (this.riduci) {
+                        this.riduci = false;
+                        this.mainTerminale.style.display = "block";
+                    }
+                    else if (this.chiusura) {
+                        this.chiusura = false;
+
+                        const elemento = document.createElement("div");
+                        elemento.classList.add("terminale");
+
+                        const header = document.createElement("div");
+                        header.classList.add("header");
+
+                        const chiudi = document.createElement("div");
+                        chiudi.classList.add("icon", "chiusura");
+                        header.appendChild(chiudi);
+
+                        const riduci = document.createElement("div");
+                        riduci.classList.add("icon", "riduci");
+                        header.appendChild(riduci);
+
+                        const espandi = document.createElement("div");
+                        espandi.classList.add("icon", "espandi");
+                        header.appendChild(espandi);
+
+                        const titolo = document.createElement("div");
+                        titolo.classList.add("titolo");
+                        titolo.innerHTML = "user@terminale";
+                        header.appendChild(titolo);
+
+                        const row = document.createElement("div");
+                        row.classList.add("row");
+
+                        const before = document.createElement("span");
+                        before.classList.add("before");
+                        before.innerHTML = "user@my-computer:/home/usr/$>";
+                        row.appendChild(before);
+
+                        const input = document.createElement("span");
+                        input.classList.add("input");
+                        input.contentEditable = true;
+                        input.autofocus = true;
+                        row.appendChild(input);
+
+                        elemento.appendChild(header);
+                        elemento.appendChild(row);
+                        this.mainContainer.appendChild(elemento);
+
+                        this.init();
+                    }
+                };
+
+                // creaNuovaRiga() {
+
+                //     const row = document.createElement("div");
+                //     row.classList.add("row");
+
+                //     const before = document.createElement("span");
+                //     before.classList.add("before");
+                //     before.innerHTML = "user@my-computer:/home/usr/$>";
+                //     before.style.marginRight = "5px";
+                //     row.appendChild(before);
+
+                //     const input = document.createElement("span");
+                //     input.classList.add("input");
+                //     input.contentEditable = true;
+                //     input.autofocus = true;
+                //     row.appendChild(input);
+
+                //     this.mainTerminale.appendChild(row);
+
+                // }
+
+
+                distruggiTerminale = () => {
+                    this.chiusura = true;
+                    this.mainTerminale.remove();
+                };
+
+                riduciTerminale = () => {
+                    this.riduci = true;
+                    this.mainTerminale.style.display = "none";
+                };
+
+                espandiTerminale = () => {
+                    this.fullscreen = !this.fullscreen;
+
+                    if (this.fullscreen) {
+                        this.pulsanteEspandi.style.backgroundImage = "url('assets/img/minimize.png')";
+                        this.mainTerminale.classList.add("fullscreen");
+                    } else {
+                        this.pulsanteEspandi.style.backgroundImage = "url('assets/img/maximize.png')";
+                        this.mainTerminale.classList.remove("fullscreen");
+                    }
+                };
+
+                mostraInput = (contenuto) => {
+                    console.log(contenuto);
+                };
+            }
+
+            new Terminale();
+        };
+    </script>
+</body>
+
+</html>
