@@ -41,12 +41,12 @@
             display: inline-block;
             margin-left: 10%;
             margin-top: 5%;
-            width: 700px;
-            height: 300px;
+            width: 900px;
+            height: 500px;
             background-color: black;
             resize: both;
-            min-width: 700px;
-            min-height: 300px;
+            min-width: 900px;
+            min-height: 500px;
             overflow: auto;
             scrollbar-width: none;
         }
@@ -195,8 +195,8 @@
 
                     this.inputContent.addEventListener("keypress", (event) => {
                         if (event.key === "Enter") {
-                            this.creaNuovaRiga();
-                            this.mostraInput(this.inputContent.textContent);
+                            event.preventDefault();
+                            this.execute(this.inputContent.textContent);
                         }
                     });
 
@@ -256,28 +256,6 @@
                     }
                 };
 
-                // creaNuovaRiga() {
-
-                //     const row = document.createElement("div");
-                //     row.classList.add("row");
-
-                //     const before = document.createElement("span");
-                //     before.classList.add("before");
-                //     before.innerHTML = "user@my-computer:/home/usr/$>";
-                //     before.style.marginRight = "5px";
-                //     row.appendChild(before);
-
-                //     const input = document.createElement("span");
-                //     input.classList.add("input");
-                //     input.contentEditable = true;
-                //     input.autofocus = true;
-                //     row.appendChild(input);
-
-                //     this.mainTerminale.appendChild(row);
-
-                // }
-
-
                 distruggiTerminale = () => {
                     this.chiusura = true;
                     this.mainTerminale.remove();
@@ -300,8 +278,105 @@
                     }
                 };
 
-                mostraInput = (contenuto) => {
-                    console.log(contenuto);
+                execute = (contenuto) => {
+                    var risultato = "";
+                    let clear = false;
+
+                    switch (contenuto) {
+                        case "help":
+                            risultato = "Comandi disponibili: <br>\
+                                        - help: Lista dei comandi disponibili <br>\
+                                        - time: Visualizzazione data ed ora attuali <br>\
+                                        - clear: Svuota la console <br>\
+                                        - weather [city]: Effettua una richiesta di rete che fornisce informazioni sul meteo";
+                            break;
+                        case "time":
+                            risultato = this.getDate();
+                            break;
+                        case "clear":
+                            clear = true;
+                            risultato = this.clear();
+                            break;
+                        default:
+                            risultato = "<span style='color: red'> Comando non supportato. </span> Digitare \'help\' per la lista dei comandi.";
+                            break;
+                    }
+
+                    if (!clear) {
+                        this.getResult(risultato);
+                    }
+
+                };
+
+                getResult = (output) => {
+                    const elemento = document.querySelector(".terminale");
+
+                    const row = document.createElement("div");
+                    row.classList.add("row");
+
+                    const risultato = document.createElement("span");
+                    risultato.classList.add("risultato");
+                    risultato.innerHTML = output;
+
+                    row.appendChild(risultato);
+                    elemento.appendChild(row);
+
+                    this.creaNuovaRiga();
+                }
+
+                creaNuovaRiga = () => {
+                    const elemento = document.querySelector(".terminale");
+
+                    const row = document.createElement("div");
+                    row.classList.add("row");
+
+                    const before = document.createElement("span");
+                    before.classList.add("before");
+                    before.innerHTML = "user@my-computer:/home/usr/$>";
+                    before.style.marginRight = "5px";
+                    row.appendChild(before);
+
+                    const input = document.createElement("span");
+                    input.classList.add("input");
+                    input.contentEditable = true;
+                    row.appendChild(input);
+
+                    elemento.appendChild(row);
+
+                    input.focus();
+
+                    this.inputContent = input;
+
+                    this.inputContent.addEventListener("keypress", (event) => {
+                        if (event.key === "Enter") {
+                            event.preventDefault();
+                            this.execute(this.inputContent.textContent);
+                        }
+                    });
+                }
+
+                getDate = () => {
+                    const dataOraAttuali = new Date();
+                    const anno = dataOraAttuali.getFullYear();
+                    const mese = (dataOraAttuali.getMonth() + 1) > 9 ? (dataOraAttuali.getMonth() + 1) : "0" + (dataOraAttuali.getMonth() + 1);
+                    const giorno = dataOraAttuali.getDate() > 9 ? dataOraAttuali.getDate() : "0" + dataOraAttuali.getDate();
+                    const ora = dataOraAttuali.getHours() > 9 ? dataOraAttuali.getHours() : "0" + dataOraAttuali.getHours();
+                    const minuti = dataOraAttuali.getMinutes() > 9 ? dataOraAttuali.getMinutes() : "0" + dataOraAttuali.getMinutes();
+                    const secondi = dataOraAttuali.getSeconds() > 9 ? dataOraAttuali.getSeconds() : "0" + dataOraAttuali.getSeconds();
+                    var dataOraFormattata = `Data: ${giorno}/${mese}/${anno} <br> Ora: ${ora}:${minuti}:${secondi}`;
+                    return dataOraFormattata;
+                }
+
+                clear = () => {
+                    const terminale = document.querySelector('.terminale');
+                    const input = document.querySelector('.input');
+                    const righe = terminale.querySelectorAll('.row');
+
+                    for (let i = 0; i < righe.length; i++) {
+                        terminale.removeChild(righe[i]);
+                    }
+
+                    this.creaNuovaRiga();
                 };
             }
 
