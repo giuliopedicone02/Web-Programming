@@ -286,16 +286,26 @@
                         case "help":
                             risultato = "Comandi disponibili: <br>\
                                         - help: Lista dei comandi disponibili <br>\
-                                        - time: Visualizzazione data ed ora attuali <br>\
+                                        - date: Visualizzazione data ed ora attuali <br>\
                                         - clear: Svuota la console <br>\
-                                        - weather [city]: Effettua una richiesta di rete che fornisce informazioni sul meteo";
+                                        - pwd: Mostra il percorso della directory attuale <br>\
+                                        - weather [city]: Effettua una richiesta di rete che fornisce informazioni sul meteo <br>\
+                                        - exit: Chiude la scheda del browser";
                             break;
-                        case "time":
+                        case "date":
                             risultato = this.getDate();
                             break;
                         case "clear":
                             clear = true;
                             risultato = this.clear();
+                            break;
+                        case "pwd":
+                            risultato = "/home/usr/";
+                            break;
+                        case "exit":
+                            window.close();
+                            break;
+                        case "":
                             break;
                         default:
                             risultato = "<span style='color: red'> Comando non supportato. </span> Digitare \'help\' per la lista dei comandi.";
@@ -309,17 +319,20 @@
                 };
 
                 getResult = (output) => {
-                    const elemento = document.querySelector(".terminale");
 
-                    const row = document.createElement("div");
-                    row.classList.add("row");
+                    if (output != "") {
+                        const elemento = document.querySelector(".terminale");
 
-                    const risultato = document.createElement("span");
-                    risultato.classList.add("risultato");
-                    risultato.innerHTML = output;
+                        const row = document.createElement("div");
+                        row.classList.add("row");
 
-                    row.appendChild(risultato);
-                    elemento.appendChild(row);
+                        const risultato = document.createElement("span");
+                        risultato.classList.add("risultato");
+                        risultato.innerHTML = output;
+
+                        row.appendChild(risultato);
+                        elemento.appendChild(row);
+                    }
 
                     this.creaNuovaRiga();
                 }
