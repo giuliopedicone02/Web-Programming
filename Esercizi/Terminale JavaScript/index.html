@@ -202,7 +202,6 @@
 
                 };
 
-
                 creaTerminale = () => {
                     if (this.riduci) {
                         this.riduci = false;
@@ -240,6 +239,7 @@
                         const before = document.createElement("span");
                         before.classList.add("before");
                         before.innerHTML = "user@my-computer:/home/usr/$>";
+                        before.style.marginRight = "5px";
                         row.appendChild(before);
 
                         const input = document.createElement("span");
@@ -253,6 +253,7 @@
                         this.mainContainer.appendChild(elemento);
 
                         this.init();
+                        input.focus();
                     }
                 };
 
@@ -278,19 +279,19 @@
                     }
                 };
 
-                execute = (contenuto) => {
+                execute = async (contenuto) => {
                     var risultato = "";
                     let clear = false;
 
                     switch (contenuto) {
                         case "help":
                             risultato = "Comandi disponibili: <br>\
-                                        - help: Lista dei comandi disponibili <br>\
-                                        - date: Visualizzazione data ed ora attuali <br>\
-                                        - clear: Svuota la console <br>\
-                                        - pwd: Mostra il percorso della directory attuale <br>\
-                                        - weather [city]: Effettua una richiesta di rete che fornisce informazioni sul meteo <br>\
-                                        - exit: Chiude la scheda del browser";
+                                            - <span style='color: greenyellow'>help</span>: Lista dei comandi disponibili <br>\
+                                            - <span style='color: greenyellow'>date</span>: Visualizzazione data ed ora attuali <br>\
+                                            - <span style='color: greenyellow'>clear</span>: Svuota la console <br>\
+                                            - <span style='color: greenyellow'>pwd</span>: Mostra il percorso della directory attuale <br>\
+                                            - <span style='color: greenyellow'>weather [city]</span>: Effettua una richiesta di rete che fornisce informazioni sul meteo <br>\
+                                            - <span style='color: greenyellow'>exit</span>: Chiude la scheda del browser";
                             break;
                         case "date":
                             risultato = this.getDate();
@@ -301,6 +302,9 @@
                             break;
                         case "pwd":
                             risultato = "/home/usr/";
+                            break;
+                        case "weather":
+                            risultato = await this.requestDataAsync();
                             break;
                         case "exit":
                             window.close();
@@ -335,7 +339,7 @@
                     }
 
                     this.creaNuovaRiga();
-                }
+                };
 
                 creaNuovaRiga = () => {
                     const elemento = document.querySelector(".terminale");
@@ -367,7 +371,7 @@
                             this.execute(this.inputContent.textContent);
                         }
                     });
-                }
+                };
 
                 getDate = () => {
                     const dataOraAttuali = new Date();
@@ -379,7 +383,7 @@
                     const secondi = dataOraAttuali.getSeconds() > 9 ? dataOraAttuali.getSeconds() : "0" + dataOraAttuali.getSeconds();
                     var dataOraFormattata = `Data: ${giorno}/${mese}/${anno} <br> Ora: ${ora}:${minuti}:${secondi}`;
                     return dataOraFormattata;
-                }
+                };
 
                 clear = () => {
                     const terminale = document.querySelector('.terminale');
@@ -391,6 +395,25 @@
                     }
 
                     this.creaNuovaRiga();
+                };
+
+                requestDataAsync = async () => {
+
+                    let elementNew = null;
+                    let str = "";
+
+                    //prima di richeidere
+                    const promessaRisposta = await fetch("https://jsonplaceholder.typicode.com/todos/");
+                    const datiJSon = await promessaRisposta.json();
+
+                    //caricamento avvenuto
+                    for (const todo of datiJSon) {
+                        elementNew = document.createElement("span");
+                        str += "[" + todo.id + "] " + todo.title + " (" + todo.completed + ")" + "<br>";
+                    }
+
+                    console.log(str);
+                    return str;
                 };
             }
 
