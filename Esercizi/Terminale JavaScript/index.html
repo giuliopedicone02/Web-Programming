@@ -358,6 +358,7 @@
 
                     input.focus();
 
+                    this.inputContent.contentEditable = false;
                     this.inputContent = input;
 
                     this.inputContent.addEventListener("keypress", (event) => {
