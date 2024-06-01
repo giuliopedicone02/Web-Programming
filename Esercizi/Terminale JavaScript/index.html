@@ -281,7 +281,16 @@
 
                 execute = async (contenuto) => {
                     var risultato = "";
+                    var city = "";
                     let clear = false;
+
+                    contenuto = contenuto.toLowerCase();
+
+                    if (contenuto.includes("weather") == true) {
+                        var words = contenuto.split(" ");
+                        contenuto = words[0];
+                        city = words[1];
+                    }
 
                     switch (contenuto) {
                         case "help":
@@ -304,7 +313,7 @@
                             risultato = "/home/usr/";
                             break;
                         case "weather":
-                            risultato = await this.requestDataAsync();
+                            risultato = await this.requestDataAsync(city);
                             break;
                         case "exit":
                             window.close();
@@ -397,20 +406,26 @@
                     this.creaNuovaRiga();
                 };
 
-                requestDataAsync = async () => {
+                requestDataAsync = async (city) => {
+
+                    const api = {
+                        key: "acb3f630d63ad039ab645da84c03cd6a",
+                        base: "https://api.openweathermap.org/data/2.5/",
+                    }
 
                     let elementNew = null;
                     let str = "";
 
                     //prima di richeidere
-                    const promessaRisposta = await fetch("https://jsonplaceholder.typicode.com/todos/");
+                    const promessaRisposta = await fetch(`${api.base}weather?q=${city}&units=metric&APPID=${api.key}`)
                     const datiJSon = await promessaRisposta.json();
 
-                    //caricamento avvenuto
-                    for (const todo of datiJSon) {
-                        elementNew = document.createElement("span");
-                        str += "[" + todo.id + "] " + todo.title + " (" + todo.completed + ")" + "<br>";
-                    }
+                    console.log(datiJSon);
+
+                    str = `<span style='color: greenyellow'>Temperatura attuale</span>: ${datiJSon.main.temp} °C <br>\
+                    <span style='color: greenyellow'>Temperatura minima</span>: ${datiJSon.main.temp_min} °C <br>\
+                    <span style='color: greenyellow'>Temperatura massima</span>: ${datiJSon.main.temp_max} °C <br>\
+                    <span style='color: greenyellow'>Descrizione</span>: ${datiJSon.weather[0].description}<br>`
 
                     console.log(str);
                     return str;
