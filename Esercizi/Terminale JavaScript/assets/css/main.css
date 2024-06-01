@@ -1,0 +1,146 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    overflow: hidden;
+}
+
+body {
+    background-image: url("../img/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+a {
+    text-decoration: none;
+}
+
+.desktop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.terminale {
+    position: relative;
+    display: inline-block;
+    margin-left: 10%;
+    margin-top: 5%;
+    width: 900px;
+    height: 500px;
+    background-color: black;
+    resize: both;
+    min-width: 700px;
+    min-height: 300px;
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+.terminale.fullscreen {
+    position: fixed;
+    margin-left: 0;
+    margin-top: 0;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 2;
+}
+
+.terminale.fullscreen>.header {
+    cursor: auto;
+}
+
+.icon:hover {
+    opacity: 0.4;
+    transition: ease-in;
+}
+
+.terminale>.header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background-color: darkgray;
+    padding: 10px;
+    z-index: 1;
+    cursor: move;
+}
+
+.terminale>.header>.icon {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.terminale>.header>.chiusura {
+    background: url("../img/close.png") center;
+    background-size: cover;
+}
+
+.terminale>.header>.riduci {
+    background: url("../img/minimise.png") center;
+    background-size: cover;
+}
+
+.terminale>.header>.espandi {
+    background: url("../img/maximize.png") center;
+    background-size: cover;
+}
+
+.terminale>.header>.titolo {
+    position: relative;
+    top: -15px;
+    left: 25%;
+    line-height: 50px;
+    text-align: center;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.terminale>.row {
+    position: relative;
+    padding-top: 30px;
+    padding-left: 20px;
+    color: white;
+}
+
+.terminale>.row>.before {
+    color: yellow;
+}
+
+.terminale>.row>.input {
+    outline: none;
+}
+
+.desktop>.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.4);
+    color: white;
+    text-align: center;
+}
+
+.desktop>.footer>.icon {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+}
