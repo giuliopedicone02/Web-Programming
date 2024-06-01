@@ -16,6 +16,7 @@
             padding: 0;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 20px;
+            overflow: hidden;
         }
 
         body {
@@ -45,21 +46,27 @@
             height: 500px;
             background-color: black;
             resize: both;
-            min-width: 900px;
-            min-height: 500px;
+            min-width: 700px;
+            min-height: 300px;
             overflow: auto;
             scrollbar-width: none;
         }
 
         .terminale.fullscreen {
-            position: absolute;
-            top: 0;
+            position: fixed;
+            margin-left: 0;
+            margin-top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            resize: none;
-            z-index: 1;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 100% !important;
+            height: 100% !important;
+            z-index: 2;
+        }
+
+        .terminale.fullscreen>.header {
+            cursor: auto;
         }
 
         .icon:hover {
@@ -76,6 +83,7 @@
             background-color: darkgray;
             padding: 10px;
             z-index: 1;
+            cursor: move;
         }
 
         .terminale>.header>.icon {
@@ -200,7 +208,37 @@
                         }
                     });
 
+                    this.makeDraggable();
+
                 };
+
+                makeDraggable = () => {
+                    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                    let shellBar = this.mainContainer.querySelector(".header");
+
+                    shellBar.onmousedown = (e) => {
+                        e.preventDefault();
+                        pos3 = e.clientX;
+                        pos4 = e.clientY;
+                        document.onmouseup = closeDragElement;
+                        document.onmousemove = elementDrag;
+                    };
+
+                    const elementDrag = (e) => {
+                        e.preventDefault();
+                        pos1 = pos3 - e.clientX;
+                        pos2 = pos4 - e.clientY;
+                        pos3 = e.clientX;
+                        pos4 = e.clientY;
+                        this.mainContainer.style.top = (this.mainContainer.offsetTop - pos2) + "px";
+                        this.mainContainer.style.left = (this.mainContainer.offsetLeft - pos1) + "px";
+                    };
+
+                    const closeDragElement = () => {
+                        document.onmouseup = null;
+                        document.onmousemove = null;
+                    };
+                }
 
                 creaTerminale = () => {
                     if (this.riduci) {
@@ -251,6 +289,9 @@
                         elemento.appendChild(header);
                         elemento.appendChild(row);
                         this.mainContainer.appendChild(elemento);
+
+                        this.mainContainer.style.top = "0px";
+                        this.mainContainer.style.left = "0px";
 
                         this.init();
                         input.focus();
@@ -413,21 +454,22 @@
                         base: "https://api.openweathermap.org/data/2.5/",
                     }
 
-                    let elementNew = null;
                     let str = "";
 
-                    //prima di richeidere
-                    const promessaRisposta = await fetch(`${api.base}weather?q=${city}&units=metric&APPID=${api.key}`)
+                    const promessaRisposta = await fetch(`${api.base}weather?q=${city}&units=metric&APPID=${api.key}`);
                     const datiJSon = await promessaRisposta.json();
+
+                    if (!promessaRisposta.ok)
+                        return "<span style='color: red'> Richiesta fetch non riuscita! </span> Si prega di specificare la città!";
 
                     console.log(datiJSon);
 
                     str = `<span style='color: greenyellow'>Temperatura attuale</span>: ${datiJSon.main.temp} °C <br>\
                     <span style='color: greenyellow'>Temperatura minima</span>: ${datiJSon.main.temp_min} °C <br>\
                     <span style='color: greenyellow'>Temperatura massima</span>: ${datiJSon.main.temp_max} °C <br>\
-                    <span style='color: greenyellow'>Descrizione</span>: ${datiJSon.weather[0].description}<br>`
+                    <span style='color: greenyellow'>Descrizione</span>: ${datiJSon.weather[0].description}<br>\
+                    <span style='color: greenyellow'>Vento</span>: ${datiJSon.wind.deg}° ${datiJSon.wind.speed} km/h<br>`
 
-                    console.log(str);
                     return str;
                 };
             }
