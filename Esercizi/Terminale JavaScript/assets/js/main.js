@@ -150,7 +150,7 @@ window.onload = () => {
             if (contenuto.includes("weather") == true) {
                 var words = contenuto.split(" ");
                 contenuto = words[0];
-                city = words[1];
+                city = words.slice(1).join(" "); //Restituisce un nuovo array che inizia dall'indice 1 fino alla fine dell'array originale
             }
 
             switch (contenuto) {
