@@ -1,0 +1,14 @@
+{
+  "name": "primo_progetto",
+  "version": "1.0.0",
+  "description": "Progetto di test per il corso di Web",
+  "main": "main.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "author": "Giulio",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
