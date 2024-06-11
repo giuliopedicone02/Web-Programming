@@ -1,0 +1,17 @@
+.bar {
+    border: 2px solid black;
+    border-radius: 8px;
+    height: 80px;
+    background-color: #eeeeee;
+    margin: 20px;
+    overflow: hidden;
+}
+
+.bar>.bar-value {
+    border-radius: 8px;
+    height: 80px;
+    background-color: deepskyblue;
+    text-align: center;
+    line-height: 80px;
+    width: 100%;
+}

@@ -1,0 +1,14 @@
+{
+  "name": "2024-06-11",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "author": "Giulio Pedicone",
+  "license": "ISC",
+  "description": "Bar percentage",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

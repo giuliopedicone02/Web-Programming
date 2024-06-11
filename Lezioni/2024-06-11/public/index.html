@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="bar">
+        <div class="bar-value">Loading...</div>
+    </div>
+
+    <script>
+        const bar = document.querySelector(".bar>.bar-value");
+
+        (async () => {
+            const resp = await fetch("/api/memory");
+            const totalMem = parseInt(await resp.text);
+
+            setInterval(async () => {
+                const resp = await fetch("/api/memory/free");
+                const free = parseInt(await resp.text);
+                const percentageFree = parseInt((free / totalMem) * 100);
+                bar.style.width = percentageFree + "%";
+                bar.innerHTML = percentageFree + "%";
+            }, 2000);
+        })();
+
+    </script>
+</body>
+
+</html>
