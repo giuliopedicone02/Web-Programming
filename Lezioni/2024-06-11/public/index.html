@@ -17,12 +17,12 @@
         const bar = document.querySelector(".bar>.bar-value");
 
         (async () => {
-            const resp = await fetch("/api/memory");
-            const totalMem = parseInt(await resp.text);
+            const resp = await fetch("/memory");
+            const totalMem = parseInt(await resp.text());
 
             setInterval(async () => {
-                const resp = await fetch("/api/memory/free");
-                const free = parseInt(await resp.text);
+                const resp = await fetch("/memory/free");
+                const free = parseInt(await resp.text());
                 const percentageFree = parseInt((free / totalMem) * 100);
                 bar.style.width = percentageFree + "%";
                 bar.innerHTML = percentageFree + "%";

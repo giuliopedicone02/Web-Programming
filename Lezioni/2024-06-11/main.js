@@ -6,7 +6,7 @@ serverHttp.use(express.static("./public"));
 
 const user = {
     logged: true,
-    admin: false
+    admin: true
 }
 
 const checkLogged = (req, resp, next) => {
@@ -23,28 +23,24 @@ const checkAdmin = (req, resp, next) => {
     resp.status(501).send("Non autorizzato");
 }
 
-const routerOs = express.Router();
-
-routerOs.get("/userinfo", (request, response) => {
+serverHttp.get("/userinfo", (request, response) => {
     response.send(os.userInfo());
 });
 
-routerOs.get("/network", checkLogged, checkAdmin, (request, response) => {
+serverHttp.get("/network", checkLogged, checkAdmin, (request, response) => {
     response.send(os.networkInterfaces());
 });
 
-routerOs.get("/memory", checkLogged, (request, response) => {
-    response.send(os.totalmem());
+serverHttp.get("/memory", checkLogged, (request, response) => {
+    response.send(os.totalmem().toString());
 });
 
-routerOs.get("/memory/free", (request, response) => {
-    response.send(os.freemem());
+serverHttp.get("/memory/free", (request, response) => {
+    response.send(os.freemem().toString());
 });
 
 serverHttp.get("/api/:qualcosa/ok/:altro", (request, response) => {
     response.send(request.params["qualcosa"] + " " + request.params["altro"] + " " + request.query["id"]);
 });
-
-serverHttp.use("/api/os/", routerOs);
 
 serverHttp.listen(9999, () => { console.log("Servizio avviato sulla porta 9999"); });
