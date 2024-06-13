@@ -27,11 +27,11 @@ serverHttp.get("/userinfo", (request, response) => {
     response.send(os.userInfo());
 });
 
-serverHttp.get("/network", checkLogged, checkAdmin, (request, response) => {
+serverHttp.get("/network", (request, response) => {
     response.send(os.networkInterfaces());
 });
 
-serverHttp.get("/memory", checkLogged, (request, response) => {
+serverHttp.get("/memory", (request, response) => {
     response.send(os.totalmem().toString());
 });
 
