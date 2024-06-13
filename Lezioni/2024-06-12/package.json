@@ -1,0 +1,15 @@
+{
+  "name": "2024-06-12",
+  "version": "1.0.0",
+  "description": "Chat multi-client",
+  "main": "main.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "author": "Giulio Pedicone",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "ws": "^8.17.0"
+  }
+}

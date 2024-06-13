@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lezione del 12 giugno 2024</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <div class="chat">
+    </div>
+    <div class="inputs">
+        <input type="text" id="username">
+        <input type="text" id="messaggio">
+        <button id="btn-send">Manda</button>
+    </div>
+
+    <script>
+        const messaggioInput = document.querySelector("#messaggio");
+        const button = document.querySelector("#btn-send");
+        const chatcontainer = document.querySelector(".chat");
+
+        const webSocket = new WebSocket("ws://" + window.location.host);
+        webSocket.onopen = function () {
+        };
+
+        // Log errors
+        webSocket.onerror = function (error) {
+            console.log('WebSocket Error ' + error);
+        };
+
+        // Log messages from the server
+        webSocket.onmessage = function (e) {
+            const message = JSON.parse(e.data);
+            const msgElement = document.createElement("div");
+            msgElement.classList = ["message"];
+            msgElement.innerHTML = "[" + message.username + "] " + message.msg;
+            chatcontainer.appendChild(msgElement);
+            console.log('Server: ' + message);
+        };
+
+        button.addEventListener("click", () => {
+            const msgText = messaggioInput.value;
+            const username = document.getElementById("username").value;
+            messaggioInput.value = "";
+            webSocket.send(JSON.stringify({ username: username, msg: msgText }));
+        });
+
+    </script>
+</body>
+
+</html>
