@@ -6,12 +6,14 @@ const serverSocketIO = require('socket.io')(serverHTTP);
 
 const listUsers = [];
 
+
 serverExpress.use(express.static("./www"));
 
 
 serverExpress.get("/api/users", (req, resp) => {
     resp.json(listUsers);
 });
+
 
 //gestiremo le websocket 
 
@@ -20,13 +22,13 @@ serverSocketIO.on("connection", (socketClient) => {
 
     socketClient.on("disconnect", () => {
         console.log("Il client si è disconnesso");
-        for(const index in listUsers){
-            if(listUsers[index].id == socketClient.id){
+        for (const index in listUsers) {
+            if (listUsers[index].id == socketClient.id) {
                 listUsers.splice(index, 1);
                 break;
             }
         }
-        if(socketClient.nickname){
+        if (socketClient.nickname) {
             serverSocketIO.sockets.emit("userDisconnected", socketClient.nickname);
         }
     });
@@ -36,8 +38,8 @@ serverSocketIO.on("connection", (socketClient) => {
         socketClient["nickname"] = nickname;
         socketClient.broadcast.emit("userLogged", nickname);
         const userObject = {
-            id : socketClient.id,
-            nickname : nickname
+            id: socketClient.id,
+            nickname: nickname
         };
         listUsers.push(userObject);
     });

@@ -14,41 +14,41 @@ const btnSend = document.querySelector("#send_btn");
 
 const popolateUsers = (list) => {
     listUsersDom.innerHTML = "";
-    for(user of list){
+    for (user of list) {
 
-        const htmlUser = '<li data-nickname="'+user.nickname+'">\
+        const htmlUser = '<li data-nickname="' + user.nickname + '">\
                                 <div class="d-flex bd-highlight">\
                                     <div class="img_cont">\
-                                        <img src="https://ui-avatars.com/api/?name='+user.nickname+'" class="rounded-circle user_img" />\
+                                        <img src="https://ui-avatars.com/api/?name='+ user.nickname + '" class="rounded-circle user_img" />\
                                         <span class="online_icon online"></span>\
                                     </div>\
                                     <div class="user_info">\
-                                        <span>'+user.nickname+'</span>\
+                                        <span>'+ user.nickname + '</span>\
                                     </div>\
                                 </div>\
                             </li>';
-        listUsersDom.innerHTML+=htmlUser;
+        listUsersDom.innerHTML += htmlUser;
 
     }
 };
 
 const insertUser = (nickname) => {
-        const htmlUser = '<li data-nickname="'+nickname+'">\
+    const htmlUser = '<li data-nickname="' + nickname + '">\
                                 <div class="d-flex bd-highlight">\
                                     <div class="img_cont">\
-                                        <img src="https://ui-avatars.com/api/?name='+nickname+'" class="rounded-circle user_img" />\
+                                        <img src="https://ui-avatars.com/api/?name='+ nickname + '" class="rounded-circle user_img" />\
                                         <span class="online_icon online"></span>\
                                     </div>\
                                     <div class="user_info">\
-                                        <span>'+nickname+'</span>\
+                                        <span>'+ nickname + '</span>\
                                     </div>\
                                 </div>\
                             </li>';
-        listUsersDom.innerHTML+=htmlUser;
+    listUsersDom.innerHTML += htmlUser;
 };
 
 const removeUser = (nickname) => {
-    listUsersDom.querySelector("li[data-nickname="+nickname+"]").remove();
+    listUsersDom.querySelector("li[data-nickname=" + nickname + "]").remove();
 }
 
 
@@ -57,47 +57,54 @@ const sendMessage = () => {
     inputMessage.value = "";
     socket.emit("sendMessage", message);
     const ora = new Date();
-    const stringaData = ora.getHours()+":"+ora.getMinutes();
+    const stringaData = ora.getHours() + ":" + ora.getMinutes();
 
     const htmlElement = '<div class="d-flex justify-content-end mb-4">\
                             <div class="msg_cotainer_send">\
-                                '+message+'\
-                                <span class="msg_time_send">'+stringaData+'</span>\
+                                '+ message + '\
+                                <span class="msg_time_send">'+ stringaData + '</span>\
                             </div>\
                             <div class="img_cont_msg">\
-                                <img src="https://ui-avatars.com/api/?name='+nicknameUser+'" class="rounded-circle user_img_msg" />\
+                                <img src="https://ui-avatars.com/api/?name='+ nicknameUser + '" class="rounded-circle user_img_msg" />\
                             </div>\
                         </div>';
-    containerMessaggi.innerHTML+= htmlElement;
+    containerMessaggi.innerHTML += htmlElement;
 
 
 };
 
 const insertMessage = (nickname, message) => {
     const ora = new Date();
-    const stringaData = ora.getHours()+":"+ora.getMinutes();
+    const stringaData = ora.getHours() + ":" + ora.getMinutes();
 
     const htmlElement = ' <div class="d-flex justify-content-start mb-4">\
                             <div class="img_cont_msg">\
-                                <img src="https://ui-avatars.com/api/?name='+nickname+'"                                    class="rounded-circle user_img_msg" />\
+                                <img src="https://ui-avatars.com/api/?name='+ nickname + '"                                    class="rounded-circle user_img_msg" />\
                             </div>\
                             <div class="msg_cotainer">\
-                                <div class="text-muted h6">'+nickname+'</div>\
-                                '+message+'\
-                                <span class="msg_time mt-4">'+stringaData+'</span>\
+                                <div class="text-muted h6">'+ nickname + '</div>\
+                                '+ message + '\
+                                <span class="msg_time mt-4">'+ stringaData + '</span>\
                             </div>\
                         </div>';
-    containerMessaggi.innerHTML+= htmlElement;
+    containerMessaggi.innerHTML += htmlElement;
 
 
 };
+
+inputMessage.addEventListener("keypress", (e) => {
+    if (e.key == "Enter") {
+        e.preventDefault();
+        sendMessage();
+    }
+});
 
 btnSend.addEventListener("click", () => {
     sendMessage();
 });
 
 btnLogin.addEventListener("click", () => {
-    nicknameUser =  nicknameInput.value;
+    nicknameUser = nicknameInput.value;
 
     socket = io();
 
