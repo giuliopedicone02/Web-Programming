@@ -1,0 +1,31 @@
+version: '3.8'  
+
+services:
+  server:
+    build:
+      context: .
+    environment:
+      NODE_ENV: production
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - node-webapp-network
+
+  db:
+    image: mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017" 
+    volumes:
+      - db:/data/db
+    networks:
+      - node-webapp-network
+
+volumes:
+  db: 
+
+networks:
+  node-webapp-network:
+    driver: bridge

@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+
+.form {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+}
+
+
+.form p {
+    margin-bottom: 15px;
+}
+
+
+.form input[type="text"],
+.form input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+.form .invia {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form .invia:hover {
+    background-color: #218838;
+}
+
+
+.elenco {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+}
+
+.elenco ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+.elenco ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+
+.elenco ul li:last-child {
+    border-bottom: none;
+}

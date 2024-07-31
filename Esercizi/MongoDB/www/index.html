@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MongoDB Example</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+    <h1>Esempio di inserimento studenti con MongoDB</h1>
+
+    <div class="form">
+        <p> Inserisci nome: <input type="text" class="nome"> </p>
+        <p> Inserisci cognome: <input type="text" class="cognome"> </p>
+        <p> Inserisci matricola: <input type="number" class="matricola"> </p>
+        <button class="invia">Invia i dati</button>
+    </div>
+
+    <h1>Dati presenti su MongoDB</h1>
+
+    <div class="elenco">
+        <ul>
+            <li>Nome: </li>
+            <li>Cognome: </li>
+            <li>Matricola: </li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="assets/script.js"></script>
+</body>
+
+</html>
