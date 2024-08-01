@@ -12,6 +12,8 @@ services:
       - db
     networks:
       - node-webapp-network
+    volumes:
+      - ./:/usr/src/app
 
   db:
     image: mongo
@@ -24,6 +26,7 @@ services:
       - node-webapp-network
 
 volumes:
+  server:
   db: 
 
 networks:
